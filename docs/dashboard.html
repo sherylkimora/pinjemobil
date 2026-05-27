@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard Customer - Pinjem Mobil</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .stats-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .branch-card small {
+            display: block;
+            margin-top: 8px;
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .stats-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">Pinjem Mobil</div>
+
+        <div class="menu">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="daftar-mobil.html">Daftar Mobil</a>
+            <a href="riwayat.html">Riwayat Peminjaman</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Find your car!</h1>
+                <p>
+                    Pilih mobil yang tersedia di cabang kamu, tentukan tanggal peminjaman,
+                    lalu ajukan sewa mobil dengan mudah.
+                </p>
+                <a href="daftar-mobil.html" class="btn hero-btn">Lihat Mobil</a>
+            </div>
+        </div>
+
+        <div class="topbar">
+            <div class="page-title">
+                <h1>Dashboard Customer</h1>
+                <p>Halo, Alicia. Selamat datang di Pinjem Mobil.</p>
+            </div>
+            <a href="index.html" class="btn btn-secondary">Logout</a>
+        </div>
+
+        <div class="stats stats-3">
+            <div class="stat-card">
+                <h3>Mobil Tersedia</h3>
+                <p>2</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Riwayat Peminjaman</h3>
+                <p>2</p>
+            </div>
+
+            <div class="stat-card branch-card">
+                <h3>Cabang Saya</h3>
+                <p>Pinjem Mobil Cabang Barat</p>
+                <small>Jl. Mawar No. 21, Bandung</small>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Riwayat Peminjaman - Pinjem Mobil</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .action {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .status-note {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">Pinjem Mobil</div>
+
+        <div class="menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="daftar-mobil.html">Daftar Mobil</a>
+            <a href="riwayat.html" class="active">Riwayat Peminjaman</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="page-title">
+                <h1>Riwayat Peminjaman</h1>
+                <p>Lihat status peminjaman mobil kamu.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <tr>
+                    <th>No</th>
+                    <th>Mobil</th>
+                    <th>Nomor Polisi</th>
+                    <th>Tanggal</th>
+                    <th>Lama Sewa</th>
+                    <th>Total Sewa</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td><strong>Suzuki Jimny</strong></td>
+                    <td>DK 555 A</td>
+                    <td>2026-05-20<br><small>s/d 2026-05-21</small></td>
+                    <td>1 hari</td>
+                    <td>Rp 550.000</td>
+                    <td><span class="badge badge-available">Selesai</span></td>
+                    <td>
+                        <div class="action">
+                            <a href="detail-peminjaman.html" class="btn btn-secondary">Detail</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><strong>Hyundai Creta</strong></td>
+                    <td>D 2204 CR</td>
+                    <td>2026-05-28<br><small>s/d 2026-05-29</small></td>
+                    <td>1 hari</td>
+                    <td>Rp 450.000</td>
+                    <td><span class="badge badge-maintenance">Menunggu Cek Awal</span></td>
+                    <td>
+                        <span class="status-note">Menunggu pegawai</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

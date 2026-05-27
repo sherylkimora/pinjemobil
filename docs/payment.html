@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pembayaran DP - Pinjem Mobil</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        body {
+            background: #f4f7fb;
+        }
+
+        .payment-wrapper {
+            max-width: 460px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+        }
+
+        .payment-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #08142f;
+            margin-bottom: 8px;
+        }
+
+        .payment-subtitle {
+            color: #6b7280;
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+
+        .qr-box {
+            display: none;
+            text-align: center;
+            background: #f9fafb;
+            border-radius: 22px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .qr-box img {
+            width: 220px;
+            border-radius: 16px;
+            background: white;
+            padding: 12px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-row span:last-child {
+            font-weight: 700;
+        }
+
+        .total {
+            color: #2563eb;
+            font-size: 20px;
+        }
+
+        .payment-actions {
+            margin-top: 24px;
+            display: grid;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payment-wrapper">
+        <div class="payment-title">Pembayaran DP</div>
+        <div class="payment-subtitle">
+            Klik tombol tampilkan QRIS, lalu lakukan simulasi pembayaran.
+        </div>
+
+        <div id="qrBox" class="qr-box">
+            <p><b>Scan QRIS</b></p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=PINJEMMOBIL-DEMO">
+        </div>
+
+        <div class="detail-row">
+            <span>Mobil</span>
+            <span>Hyundai Creta</span>
+        </div>
+
+        <div class="detail-row">
+            <span>Total Sewa</span>
+            <span>Rp 450.000</span>
+        </div>
+
+        <div class="detail-row">
+            <span>DP 50%</span>
+            <span class="total">Rp 225.000</span>
+        </div>
+
+        <div class="detail-row">
+            <span>Metode</span>
+            <span>QRIS</span>
+        </div>
+
+        <div class="payment-actions">
+            <button class="btn btn-full" onclick="showQR()">Tampilkan QRIS</button>
+            <a href="success.html" class="btn btn-full">Saya Sudah Bayar</a>
+            <a href="daftar-mobil.html" class="btn btn-secondary">Kembali</a>
+        </div>
+    </div>
+
+    <script>
+        function showQR() {
+            document.getElementById('qrBox').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>

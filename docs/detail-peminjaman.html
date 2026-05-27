@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detail Peminjaman - Pinjem Mobil</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 18px;
+            background: #f3f4f6;
+            margin-bottom: 18px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-row span:first-child {
+            color: #6b7280;
+        }
+
+        .detail-row span:last-child {
+            font-weight: 700;
+            color: #111827;
+            text-align: right;
+        }
+
+        .fine-detail {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 18px;
+            border-left: 3px solid #e5e7eb;
+        }
+
+        .fine-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .detail-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">Pinjem Mobil</div>
+
+        <div class="menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="daftar-mobil.html">Daftar Mobil</a>
+            <a href="riwayat.html" class="active">Riwayat Peminjaman</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="page-title">
+                <h1>Detail Peminjaman</h1>
+                <p>Lihat rincian transaksi peminjaman mobil kamu.</p>
+            </div>
+
+            <a href="riwayat.html" class="btn btn-secondary">Kembali</a>
+        </div>
+
+        <div class="detail-layout">
+            <div class="card">
+                <img src="assets/mobil/suzuki_jimny.png" class="detail-img">
+
+                <h2>Suzuki Jimny</h2>
+                <p class="car-location">DK 555 A</p>
+
+                <br>
+                <span class="badge badge-available">Selesai</span>
+            </div>
+
+            <div class="card">
+                <h2>Rincian Pembayaran</h2>
+                <br>
+
+                <div class="detail-row">
+                    <span>Tanggal Pinjam</span>
+                    <span>2026-05-24</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Rencana Kembali</span>
+                    <span>2026-05-25</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Tanggal Kembali Aktual</span>
+                    <span>2026-05-27</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Lama Sewa</span>
+                    <span>1 hari</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Total Sewa</span>
+                    <span>Rp 550.000</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>DP Dibayar</span>
+                    <span>Rp 275.000</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Total Denda</span>
+                    <span style="color:red;">Rp 150.000</span>
+                </div>
+
+                <div class="fine-detail">
+                    <div class="fine-row">
+                        <span>Keterlambatan: 2 hari x Rp 50.000</span>
+                        <span>Rp 100.000</span>
+                    </div>
+
+                    <div class="fine-row">
+                        <span>Light Damage</span>
+                        <span>Rp 50.000</span>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <span>Total Pelunasan</span>
+                    <span style="color:#2563eb; font-size:20px;">Rp 425.000</span>
+                </div>
+
+                <div class="detail-row">
+                    <span>Status Pembayaran</span>
+                    <span>Lunas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
