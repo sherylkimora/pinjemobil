@@ -95,6 +95,7 @@ if ($query === false) {
                     <th>Email</th>
                     <th>No Telepon</th>
                     <th>Alamat</th>
+                    <th>Aksi</th>
                     <!-- <th>Status</th> -->
                     <!-- <th>Aksi</th> -->
                 </tr>
@@ -113,6 +114,15 @@ if ($query === false) {
                         <td><?= $row['email']; ?></td>
                         <td><?= $row['nomor_telepon']; ?></td>
                         <td><?= $row['alamat']; ?></td>
+                        <td>
+                            <div class="action">
+
+                                <a href="detail_customer.php?id=<?= $row['id_member']; ?>">
+                                class="btn-edit">
+                                Detail
+                                </a>
+                            </div>
+                        </td>
 
                         <!-- <td>
                             <span class="badge">Aktif</span>
