@@ -45,6 +45,14 @@ if ($query === false) {
             font-size: 13px;
         }
 
+        .btn-detail{
+            background:#2563eb;
+            color:white;
+            padding:6px 12px;
+            border-radius:6px;
+            text-decoration:none;
+        }
+
         .badge {
             background: #dbeafe;
             color: #2563eb;
@@ -117,7 +125,7 @@ if ($query === false) {
                         <td>
                             <div class="action">
 
-                                <a href="detail_customer.php?id=<?= $row['id_member']; ?>">
+                                <a href="detail_customer.php?id=<?= $row['id_member']; ?>"
                                 class="btn-edit">
                                 Detail
                                 </a>

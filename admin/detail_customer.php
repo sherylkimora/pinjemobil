@@ -34,7 +34,7 @@ if (!$data) {
 
 	<style>
 		.card {
-			width: 800px;
+			width: 1100px;
 			margin: 30px auto;
 			padding: 30px;
 			background: white;
@@ -43,6 +43,37 @@ if (!$data) {
 		img {
 			width: 300px;
 			margin-top: 10px;
+		}
+
+		.dokumen{
+    		display:flex;
+    		gap:40px;
+    		margin-top:20px;
+    		align-items:flex-start;
+		}
+
+		.box-dokumen{
+    		display:flex;
+    		flex-direction:column;
+		}
+
+		.box-dokumen img{
+		    width:500px;
+		    border-radius:8px;
+		}
+
+		.dokumen{
+		    display:flex;
+		    flex-wrap:wrap;
+		    gap:40px;
+		}
+
+		.btn-kembali{
+            background:#2563eb;
+            color:white;
+            padding:6px 12px;
+            border-radius:6px;
+            text-decoration:none;
 		}
 	</style>
 
@@ -64,17 +95,29 @@ if (!$data) {
 
 		<hr>
 
-		<h3>KTP</h3>
+	<div class="dokumen">
 
-		<img src="../<?= $data['ktp']; ?>">
+    <div class="box-dokumen">
 
-		<h3>SIM</h3>
+        <h3>KTP</h3>
 
-		<img src="../<?= $data['sim']; ?>">
+        <img src="../<?= $data['ktp']; ?>">
+
+    </div>
+
+    <div class="box-dokumen">
+
+        <h3>SIM</h3>
+
+        <img src="../<?= $data['sim']; ?>">
+
+    </div>
+
+</div>
 
 		<br><br>
 
-		<a href="customer.php">
+		<a href="customer.php" class="btn-kembali">
 			Kembali
 		</a>
 
