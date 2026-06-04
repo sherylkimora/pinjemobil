@@ -51,11 +51,17 @@ if (isset($_POST['simpan'])) {
     $result = sqlsrv_query($koneksi, $query, $params);
 
     if ($result === false) {
-        die(print_r(sqlsrv_errors(), true));
-    }
+        $errors = sqlsrv_errors();
 
-    header("Location: mobil.php");
-    exit;
+        if ($errors[0]['code'] == 2627 || $errors[0]['code'] == 2601) {
+            echo "<script>alert('Nomor polisi sudah terdaftar!'); window.history.back();</script>";
+            exit;
+        }
+
+        die(print_r($errors, true));
+    }
+        header("Location: mobil.php");
+        exit;
 }
 ?>
 
