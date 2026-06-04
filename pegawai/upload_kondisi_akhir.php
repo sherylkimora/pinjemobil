@@ -104,17 +104,17 @@ if (isset($_POST['simpan'])) {
     $foto_belakang = uploadFoto("foto_belakang");
     $foto_kiri = uploadFoto("foto_kiri");
     $foto_kanan = uploadFoto("foto_kanan");
-    $foto_tambahan = uploadFoto("foto_interior");
+    $foto_interior = uploadFoto("foto_interior");
 
     if(empty($foto_depan) || empty($foto_belakang) ||
-        empty($foto_kiri) || empty($foto_kanan) || empty($foto_tambahan)) {
+        empty($foto_kiri) || empty($foto_kanan) || empty($foto_interior)) {
             die("Wajib upload 5 foto");
         }
 
     sqlsrv_begin_transaction($koneksi);
 
     $insert_kondisi = "INSERT INTO kondisi_mobil (id_peminjaman,id_pegawai,jenis_kondisi,
-                        foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_tambahan,keterangan_kondisi,tanggal_upload)
+                        foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_interior,keterangan_kondisi,tanggal_upload)
                         VALUES(?,?,'Akhir',?,?,?,?,?,?,CAST(GETDATE() AS DATE))";
 
     $result_kondisi = sqlsrv_query($koneksi,$insert_kondisi,
@@ -122,7 +122,7 @@ if (isset($_POST['simpan'])) {
         $id_peminjaman,$id_pegawai,
         $foto_depan,$foto_belakang,
         $foto_kiri,$foto_kanan,
-        $foto_tambahan,$keterangan
+        $foto_interior,$keterangan
     ]);
 
     if ($result_kondisi === false) {
@@ -272,20 +272,20 @@ if (isset($_POST['simpan'])) {
                         <label>Foto Belakang</label>
                         <input type="file" name="foto_belakang" class="form-control" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Foto Kiri</label>
                         <input type="file" name="foto_kiri" class="form-control" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Foto Kanan</label>
                         <input type="file" name="foto_kanan" class="form-control" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Foto Interior</label>
-                        <input type="file" name="foto_tambahan" class="form-control" required>
+                        <input type="file" name="foto_interior" class="form-control" required>
                     </div>
 
                     <div class="form-group">
