@@ -112,7 +112,7 @@ WHERE id_mobil = ?
     <div class="sidebar">
         <div class="logo">
             Pinjem Mobil
-            <span>Admin Panel</span>
+            <span>Hi, <?= $_SESSION['nama']; ?>!</span>
         </div>
 
 

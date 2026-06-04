@@ -37,7 +37,7 @@ $jumlah_peminjaman = $row_peminjaman['total'];
     <div class="sidebar">
         <div class="logo">
             Pinjem Mobil
-            <span>Admin Panel</span>
+            <span>Hi, <?= $_SESSION['nama']; ?>!</span>
         </div>
 
         <div class="menu">
@@ -54,7 +54,7 @@ $jumlah_peminjaman = $row_peminjaman['total'];
         <div class="topbar">
             <div class="page-title">
                 <h1>Dashboard Admin</h1>
-                <p>Halo, <?= $_SESSION['nama']; ?>. Kelola data Pinjem Mobil dari sini.</p>
+                <p>Kelola data Pinjem Mobil dari sini</p>
             </div>
             <a href="../logout.php" class="btn btn-secondary">Logout</a>
         </div>

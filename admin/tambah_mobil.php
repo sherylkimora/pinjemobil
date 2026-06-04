@@ -15,53 +15,64 @@ if ($cabang === false) {
 
 if (isset($_POST['simpan'])) {
     $id_cabang = $_POST['id_cabang'];
-    $nomor_polisi = $_POST['nomor_polisi'];
+    $nomor_polisi = strtoupper(trim($_POST['nomor_polisi']));
     $nama_mobil = $_POST['nama_mobil'];
     $kapasitas = $_POST['kapasitas'];
-    $status_mobil = $_POST['status_mobil'];
     $harga_sewa = $_POST['harga_sewa'];
+    $status_mobil = "Tersedia";
 
-    $foto_mobil = "";
+    // cek apakah nomor polisi sudah ada
+    $cek_plat = sqlsrv_query(
+        $koneksi,
+        "SELECT COUNT(*) AS total FROM mobil WHERE nomor_polisi = ?",
+        [$nomor_polisi]
+    );
 
-    if ($_FILES['foto_mobil']['name'] != "") {
-        $nama_file = time() . "_" . $_FILES['foto_mobil']['name'];
-        $lokasi_tmp = $_FILES['foto_mobil']['tmp_name'];
-        $folder_tujuan = "../uploads/mobil/" . $nama_file;
-
-        move_uploaded_file($lokasi_tmp, $folder_tujuan);
-
-        $foto_mobil = "uploads/mobil/" . $nama_file;
+    if ($cek_plat === false) {
+        die(print_r(sqlsrv_errors(), true));
     }
 
-    $query = "INSERT INTO mobil 
-              (id_cabang, nomor_polisi, nama_mobil, kapasitas, status_mobil, harga_sewa, foto_mobil)
-              VALUES 
-              (?, ?, ?, ?, ?, ?, ?)";
+    $row_cek = sqlsrv_fetch_array($cek_plat, SQLSRV_FETCH_ASSOC);
 
-    $params = [
-        $id_cabang,
-        $nomor_polisi,
-        $nama_mobil,
-        $kapasitas,
-        $status_mobil,
-        $harga_sewa,
-        $foto_mobil
-    ];
+    if ($row_cek['total'] > 0) {
+        $error = "Nomor polisi sudah terdaftar. Gunakan nomor polisi lain.";
+    } else {
+        $foto_mobil = "";
 
-    $result = sqlsrv_query($koneksi, $query, $params);
+        if ($_FILES['foto_mobil']['name'] != "") {
+            $nama_file = time() . "_" . $_FILES['foto_mobil']['name'];
+            $lokasi_tmp = $_FILES['foto_mobil']['tmp_name'];
+            $folder_tujuan = "../uploads/mobil/" . $nama_file;
 
-    if ($result === false) {
-        $errors = sqlsrv_errors();
+            move_uploaded_file($lokasi_tmp, $folder_tujuan);
 
-        if ($errors[0]['code'] == 2627 || $errors[0]['code'] == 2601) {
-            echo "<script>alert('Nomor polisi sudah terdaftar!'); window.history.back();</script>";
-            exit;
+            $foto_mobil = "uploads/mobil/" . $nama_file;
         }
 
-        die(print_r($errors, true));
-    }
+        $query = "INSERT INTO mobil 
+                 (id_cabang, nomor_polisi, nama_mobil, kapasitas, status_mobil, harga_sewa, foto_mobil)
+                 VALUES 
+                 (?, ?, ?, ?, ?, ?, ?)";
+
+        $params = [
+            $id_cabang,
+            $nomor_polisi,
+            $nama_mobil,
+            $kapasitas,
+            $status_mobil,
+            $harga_sewa,
+            $foto_mobil
+        ];
+
+        $result = sqlsrv_query($koneksi, $query, $params);
+
+        if ($result === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
         header("Location: mobil.php");
         exit;
+    }
 }
 ?>
 
@@ -78,7 +89,17 @@ if (isset($_POST['simpan'])) {
     <div class="main" style="margin-left:0; max-width:800px; margin:40px auto;">
         <div class="card">
             <h2>Tambah Mobil</h2>
+            <p style="color:#6b7280; margin-top:6px;">
+                Mobil baru otomatis masuk dengan status Tersedia.
+            </p>
             <br>
+
+            <?php if (isset($error)) { ?>
+                <div class="alert-error">
+                    <?= $error; ?>
+                </div>
+                <br>
+            <?php } ?>
 
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
@@ -95,7 +116,8 @@ if (isset($_POST['simpan'])) {
 
                 <div class="form-group">
                     <label>Nomor Polisi</label>
-                    <input type="text" name="nomor_polisi" class="form-control" required>
+                    <input type="text" name="nomor_polisi" class="form-control" placeholder="Contoh: D 1201 AB"
+                        required>
                 </div>
 
                 <div class="form-group">
@@ -106,21 +128,12 @@ if (isset($_POST['simpan'])) {
 
                 <div class="form-group">
                     <label>Kapasitas</label>
-                    <input type="number" name="kapasitas" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label>Status Mobil</label>
-                    <select name="status_mobil" class="form-control">
-                        <option value="Tersedia">Tersedia</option>
-                        <option value="Dipinjam">Dipinjam</option>
-                        <option value="Maintenance">Maintenance</option>
-                    </select>
+                    <input type="number" name="kapasitas" class="form-control" min="1" required>
                 </div>
 
                 <div class="form-group">
                     <label>Harga Sewa per Hari</label>
-                    <input type="number" name="harga_sewa" class="form-control">
+                    <input type="number" name="harga_sewa" class="form-control" min="0" required>
                 </div>
 
                 <div class="form-group">
