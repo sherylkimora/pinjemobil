@@ -87,16 +87,16 @@ VALUES
 (6, 8, '2026-05-26', '2026-05-28', 2, 1800000, 'Menunggu Cek Akhir', 900000);
 
 INSERT INTO kondisi_mobil
-(id_peminjaman, id_pegawai, jenis_kondisi, foto_kondisi, keterangan_kondisi, tanggal_upload)
+(id_peminjaman, id_pegawai, jenis_kondisi, foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_interior, keterangan_kondisi, tanggal_upload)
 VALUES
-(1, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png', 'Mobil bersih, ban normal, tidak ada kerusakan baru.', '2026-05-20'),
-(1, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png', 'Mobil kembali dalam kondisi baik.', '2026-05-21'),
-(2, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png', 'Kondisi awal baik dan siap digunakan.', '2026-05-24'),
-(2, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png', 'Ada baret kecil pada pintu kiri dan customer terlambat mengembalikan mobil.', '2026-05-27'),
-(3, 4, 'Awal', 'uploads/mobil/toyota_fortuner.png', 'Kondisi awal baik, interior bersih, bahan bakar cukup.', '2026-05-27'),
-(5, 3, 'Awal', 'uploads/mobil/hyundai_creta.png', 'Kondisi awal baik dan dokumen kendaraan lengkap.', '2026-05-24'),
-(5, 3, 'Akhir', 'uploads/mobil/hyundai_creta.png', 'Terdapat penyok kecil pada bumper belakang.', '2026-05-27'),
-(6, 4, 'Awal', 'uploads/mobil/hyundai_palisade.png', 'Kondisi awal sangat baik, interior bersih.', '2026-05-26');
+(1, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png', 'Mobil bersih, ban normal, tidak ada kerusakan baru.', '2026-05-20'),
+(1, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png', 'Mobil kembali dalam kondisi baik.', '2026-05-21'),
+(2, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png', 'Kondisi awal baik dan siap digunakan.', '2026-05-24'),
+(2, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png','uploads/mobil/suzuki_jimny.png', 'Ada baret kecil pada pintu kiri dan customer terlambat mengembalikan mobil.', '2026-05-27'),
+(3, 4, 'Awal', 'uploads/mobil/toyota_fortuner.png','uploads/mobil/toyota_fortuner.png','uploads/mobil/toyota_fortuner.png','uploads/mobil/toyota_fortuner.png','uploads/mobil/toyota_fortuner.png', 'Kondisi awal baik, interior bersih, bahan bakar cukup.', '2026-05-27'),
+(5, 3, 'Awal', 'uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png', 'Kondisi awal baik dan dokumen kendaraan lengkap.', '2026-05-24'),
+(5, 3, 'Akhir', 'uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png','uploads/mobil/hyundai_creta.png', 'Terdapat penyok kecil pada bumper belakang.', '2026-05-27'),
+(6, 4, 'Awal', 'uploads/mobil/hyundai_palisade.png','uploads/mobil/hyundai_palisade.png','uploads/mobil/hyundai_palisade.png','uploads/mobil/hyundai_palisade.png','uploads/mobil/hyundai_palisade.png', 'Kondisi awal sangat baik, interior bersih.', '2026-05-26');
 
 INSERT INTO pengembalian
 (id_peminjaman, id_pegawai, tanggal_kembali, keterlambatan, total_denda, total_bayar_sewa, sisa_bayar, status_pembayaran, tanggal_pelunasan)

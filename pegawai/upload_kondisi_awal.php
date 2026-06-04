@@ -36,25 +36,35 @@ if (!$data) {
 if (isset($_POST['simpan'])) {
     $id_pegawai = $_SESSION['id_pegawai'];
     $keterangan = $_POST['keterangan_kondisi'];
-    $foto_kondisi = "";
+    
+    function uploadFoto($inputName){
+        if(empty($_FILES[$inputName]['name'])){
+            return "";
+        }
 
-    if ($_FILES['foto_kondisi']['name'] != "") {
-        $nama_file = time() . "_" . $_FILES['foto_kondisi']['name'];
-        $tmp = $_FILES['foto_kondisi']['tmp_name'];
-        $tujuan = "../uploads/kondisi/" . $nama_file;
+        $namaFile = time() ."_" . basename($_FILES[$inputName]['name']);
+        $tujuan = "../uploads/kondisi/" .
+        $namaFile;
 
-        move_uploaded_file($tmp, $tujuan);
-
-        $foto_kondisi = "uploads/kondisi/" . $nama_file;
+        move_uploaded_file($_FILES[$inputName]['tmp_name'],$tujuan);
+        return "uploads/kondisi/" . $namaFile;
     }
 
-    $insert = "INSERT INTO kondisi_mobil
-               (id_peminjaman, id_pegawai, jenis_kondisi, foto_kondisi, keterangan_kondisi, tanggal_upload)
-               VALUES
-               (?, ?, 'Awal', ?, ?, CAST(GETDATE() AS DATE))";
+    $foto_depan = uploadFoto("foto_depan");
+    $foto_belakang = uploadFoto("foto_belakang");
+    $foto_kiri = uploadFoto("foto_kiri");
+    $foto_kanan = uploadFoto("foto_kanan");
+    $foto_interior = uploadFoto("foto_interior");
 
-    $params_insert = [$id_peminjaman, $id_pegawai, $foto_kondisi, $keterangan];
+    if(empty($foto_depan) || empty($foto_belakang) ||
+        empty($foto_kiri) || empty($foto_kanan) || empty($foto_interior)) {
+        die("Wajib upload 5 foto");
+    }
 
+    $insert = "INSERT INTO kondisi_mobil (id_peminjaman,id_pegawai,jenis_kondisi,foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_interior,keterangan_kondisi,tanggal_upload)
+            VALUES (?,?,'Awal',?,?,?,?,?,?,CAST(GETDATE() AS DATE))";
+
+    $params_insert = [$id_peminjaman,$id_pegawai,$foto_depan,$foto_belakang,$foto_kiri,$foto_kanan,$foto_interior,$keterangan];
     $result_insert = sqlsrv_query($koneksi, $insert, $params_insert);
 
     if ($result_insert === false) {
@@ -130,8 +140,28 @@ if (isset($_POST['simpan'])) {
             <div class="card">
                 <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Foto Kondisi Awal</label>
-                        <input type="file" name="foto_kondisi" class="form-control" required>
+                        <label>Foto Depan</label>
+                        <input type="file" name="foto_depan" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Foto Belakang</label>
+                        <input type="file" name="foto_belakang" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Kiri</label>
+                        <input type="file" name="foto_kiri" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Kanan</label>
+                        <input type="file" name="foto_kanan" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Interior</label>
+                        <input type="file" name="foto_interior" class="form-control" required>
                     </div>
 
                     <div class="form-group">
