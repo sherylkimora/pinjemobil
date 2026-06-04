@@ -2,6 +2,8 @@
 session_start();
 include '../koneksi.php';
 
+print_r(array_keys($_FILES));
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'pegawai') {
     header("Location: ../login.php");
     exit;
@@ -31,6 +33,29 @@ $data = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 if (!$data) {
     echo "Data peminjaman tidak ditemukan.";
     exit;
+}
+
+function uploadFoto($inputName){
+
+    if(empty($_FILES[$inputName]['name'])){
+        return "";
+    }
+
+    $namaFile =
+        time() .
+        "_" .
+        basename($_FILES[$inputName]['name']);
+
+    $tujuan =
+        "../uploads/kondisi/" .
+        $namaFile;
+
+    move_uploaded_file(
+        $_FILES[$inputName]['tmp_name'],
+        $tujuan
+    );
+
+    return "uploads/kondisi/" . $namaFile;
 }
 
 if (isset($_POST['simpan'])) {
@@ -75,30 +100,30 @@ if (isset($_POST['simpan'])) {
     $total_bayar_sewa = $data['total_sewa'] + $total_denda;
     $sisa_bayar = $total_bayar_sewa - $data['pembayaran_dp'];
 
-    $foto_kondisi = "";
+    $foto_depan = uploadFoto("foto_depan");
+    $foto_belakang = uploadFoto("foto_belakang");
+    $foto_kiri = uploadFoto("foto_kiri");
+    $foto_kanan = uploadFoto("foto_kanan");
+    $foto_tambahan = uploadFoto("foto_interior");
 
-    if ($_FILES['foto_kondisi']['name'] != "") {
-        $nama_file = time() . "_" . $_FILES['foto_kondisi']['name'];
-        $tmp = $_FILES['foto_kondisi']['tmp_name'];
-        $tujuan = "../uploads/kondisi/" . $nama_file;
-
-        move_uploaded_file($tmp, $tujuan);
-
-        $foto_kondisi = "uploads/kondisi/" . $nama_file;
-    }
+    if(empty($foto_depan) || empty($foto_belakang) ||
+        empty($foto_kiri) || empty($foto_kanan) || empty($foto_tambahan)) {
+            die("Wajib upload 5 foto");
+        }
 
     sqlsrv_begin_transaction($koneksi);
 
-    $insert_kondisi = "INSERT INTO kondisi_mobil
-        (id_peminjaman, id_pegawai, jenis_kondisi, foto_kondisi, keterangan_kondisi, tanggal_upload)
-        VALUES
-        (?, ?, 'Akhir', ?, ?, CAST(GETDATE() AS DATE))";
+    $insert_kondisi = "INSERT INTO kondisi_mobil (id_peminjaman,id_pegawai,jenis_kondisi,
+                        foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_tambahan,keterangan_kondisi,tanggal_upload)
+                        VALUES(?,?,'Akhir',?,?,?,?,?,?,CAST(GETDATE() AS DATE))";
 
-    $result_kondisi = sqlsrv_query(
-        $koneksi,
-        $insert_kondisi,
-        [$id_peminjaman, $id_pegawai, $foto_kondisi, $keterangan]
-    );
+    $result_kondisi = sqlsrv_query($koneksi,$insert_kondisi,
+    [
+        $id_peminjaman,$id_pegawai,
+        $foto_depan,$foto_belakang,
+        $foto_kiri,$foto_kanan,
+        $foto_tambahan,$keterangan
+    ]);
 
     if ($result_kondisi === false) {
         sqlsrv_rollback($koneksi);
@@ -111,17 +136,11 @@ if (isset($_POST['simpan'])) {
         VALUES
         (?, ?, ?, ?, ?, ?, ?, 'Belum Lunas')";
 
-    $result_pengembalian = sqlsrv_query(
-        $koneksi,
-        $insert_pengembalian,
+    $result_pengembalian = sqlsrv_query($koneksi,$insert_pengembalian,
         [
-            $id_peminjaman,
-            $id_pegawai,
-            $tanggal_kembali,
-            $keterlambatan,
-            $total_denda,
-            $total_bayar_sewa,
-            $sisa_bayar
+            $id_peminjaman,$id_pegawai,
+            $tanggal_kembali,$keterlambatan,
+            $total_denda,$total_bayar_sewa,$sisa_bayar
         ]
     );
 
@@ -245,8 +264,28 @@ if (isset($_POST['simpan'])) {
                     </div>
 
                     <div class="form-group">
-                        <label>Foto Kondisi Akhir</label>
-                        <input type="file" name="foto_kondisi" class="form-control" required>
+                        <label>Foto Depan</label>
+                        <input type="file" name="foto_depan" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Foto Belakang</label>
+                        <input type="file" name="foto_belakang" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Kiri</label>
+                        <input type="file" name="foto_kiri" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Kanan</label>
+                        <input type="file" name="foto_kanan" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto Interior</label>
+                        <input type="file" name="foto_tambahan" class="form-control" required>
                     </div>
 
                     <div class="form-group">
