@@ -84,12 +84,19 @@ if ($query === false) {
         }
 
         .btn-detail {
-            background: #08142f;
+            background: #2563eb;
             color: white;
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 10px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-detail:hover {
+            background: #1d4ed8;
         }
 
         .badge-soft {

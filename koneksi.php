@@ -1,5 +1,5 @@
 <?php
-$serverName = "localhost\\SQLEXPRESS01";
+$serverName = "localhost\\SQLEXPRESS";
 
 $connectionOptions = [
     "Database" => "pinjemobil",

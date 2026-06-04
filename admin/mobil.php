@@ -66,6 +66,7 @@ if ($data === false) {
                     <th>Status</th>
                     <th>Harga Sewa</th>
                     <th>Cabang</th>
+                    <th>Aksi</th>
                 </tr>
 
                 <?php
@@ -99,6 +100,12 @@ if ($data === false) {
 
                         <td>Rp <?= number_format($mobil['harga_sewa'], 0, ',', '.'); ?></td>
                         <td><?= $mobil['nama_cabang']; ?></td>
+
+                        <td>
+                            <a href="edit_mobil.php?id=<?= $mobil['id_mobil']; ?>" class="btn-edit">
+                                Edit
+                            </a>
+                        </td>
                     </tr>
                 <?php } ?>
             </table>
