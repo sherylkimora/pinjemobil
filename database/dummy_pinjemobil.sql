@@ -6,6 +6,13 @@ Cara pakai:
 2. Jalankan script ini di database pinjemobil lewat SSMS.
 */
 
+USE pinjemobil;
+GO
+
+SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+ORDER BY TABLE_NAME;
+
 DELETE FROM detail_denda;
 DELETE FROM pengembalian;
 DELETE FROM kondisi_mobil;
@@ -31,13 +38,17 @@ DBCC CHECKIDENT ('cabang', RESEED, 0);
 INSERT INTO cabang (nama_cabang, alamat) VALUES
 ('Pinjem Mobil Cabang Utama', 'Jl. Anggrek No. 10, Bandung'),
 ('Pinjem Mobil Cabang Barat', 'Jl. Mawar No. 21, Bandung'),
-('Pinjem Mobil Cabang Timur', 'Jl. Tulip No. 8, Bandung');
+('Pinjem Mobil Cabang Timur', 'Jl. Tulip No. 8, Bandung'),
+('Pinjem Mobil Cabang Selatan','Jl. Matahari No. 15, Bandung'),
+('Pinjem Mobil Cabang Utara', 'Jl. Lavender No. 15, Bandung');
 
 INSERT INTO pegawai (id_cabang, nama_pegawai, nomor_telepon, email, alamat, jabatan) VALUES
 (1, 'Admin Utama', '081234567801', 'adminutama@gmail.com', 'Jl. Bukit Jarian No. 12', 'Pemilik'),
 (1, 'Admin Cabang Utama', '081234567802', 'admincabang@gmail.com', 'Jl. Ciumbuleuit No. 45', 'Admin Cabang'),
 (2, 'Pegawai Barat', '081234567803', 'pegawaibarat@gmail.com', 'Jl. Cibaduyut No. 17', 'Petugas Cek Kondisi'),
-(3, 'Pegawai Timur', '081234567804', 'pegawaitimur@gmail.com', 'Jl. Antapani No. 3', 'Petugas Cek Kondisi');
+(3, 'Pegawai Timur', '081234567804', 'pegawaitimur@gmail.com', 'Jl. Antapani No. 3', 'Petugas Cek Kondisi'),
+(3, 'Pegawai Utara', '081234567805', 'pegawaiUtara@gmail.com', 'Jl. Cihapit No. 10', 'Petugas Cek Kondisi'),
+(5, 'Pegawai Selatan', '081234567807', 'pegawaiSelatan@gmail.com', 'Jl. Jatihurip No. 20', 'Petugas Cek Kondisi');
 
 INSERT INTO member (nama_member, ktp, sim, alamat, nomor_telepon, email, tanggal_registrasi, id_cabang) VALUES
 ('Dodo', 'uploads/identitas/ktp_dodo.png', 'uploads/identitas/sim_dodo.png', 'Jl. Sukajadi No. 15, Bandung', '082129284461', 'dodo@gmail.com', '2026-05-20', 2),
@@ -107,7 +118,7 @@ VALUES
 
 INSERT INTO detail_denda (id_pengembalian, nama_denda, nominal_denda) VALUES
 (2, 'Light Damage', 50000),
-(3, 'Medium Damage', 150000);
+(3, 'Medium Damage', 150000); 
 
 -- buat check
 SELECT * 
