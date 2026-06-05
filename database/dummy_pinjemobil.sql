@@ -47,8 +47,8 @@ INSERT INTO pegawai (id_cabang, nama_pegawai, nomor_telepon, email, alamat, jaba
 (1, 'Admin Cabang Utama', '081234567802', 'admincabang@gmail.com', 'Jl. Ciumbuleuit No. 45', 'Admin Cabang'),
 (2, 'Pegawai Barat', '081234567803', 'pegawaibarat@gmail.com', 'Jl. Cibaduyut No. 17', 'Petugas Cek Kondisi'),
 (3, 'Pegawai Timur', '081234567804', 'pegawaitimur@gmail.com', 'Jl. Antapani No. 3', 'Petugas Cek Kondisi'),
-(3, 'Pegawai Utara', '081234567805', 'pegawaiUtara@gmail.com', 'Jl. Cihapit No. 10', 'Petugas Cek Kondisi'),
-(5, 'Pegawai Selatan', '081234567807', 'pegawaiSelatan@gmail.com', 'Jl. Jatihurip No. 20', 'Petugas Cek Kondisi');
+(4, 'Pegawai Selatan', '081234567807', 'pegawaiSelatan@gmail.com', 'Jl. Jatihurip No. 20', 'Petugas Cek Kondisi'),
+(5, 'Pegawai Utara', '081234567805', 'pegawaiUtara@gmail.com', 'Jl. Cihapit No. 10', 'Petugas Cek Kondisi');
 
 INSERT INTO member (nama_member, ktp, sim, alamat, nomor_telepon, email, tanggal_registrasi, id_cabang) VALUES
 ('Dodo', 'uploads/identitas/ktp_dodo.png', 'uploads/identitas/sim_dodo.png', 'Jl. Sukajadi No. 15, Bandung', '082129284461', 'dodo@gmail.com', '2026-05-20', 2),
