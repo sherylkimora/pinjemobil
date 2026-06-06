@@ -6,6 +6,13 @@ Cara pakai:
 2. Jalankan script ini di database pinjemobil lewat SSMS.
 */
 
+USE pinjemobil;
+GO
+
+SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+ORDER BY TABLE_NAME;
+
 DELETE FROM detail_denda;
 DELETE FROM pengembalian;
 DELETE FROM kondisi_mobil;
@@ -31,13 +38,17 @@ DBCC CHECKIDENT ('cabang', RESEED, 0);
 INSERT INTO cabang (nama_cabang, alamat) VALUES
 ('Pinjem Mobil Cabang Utama', 'Jl. Anggrek No. 10, Bandung'),
 ('Pinjem Mobil Cabang Barat', 'Jl. Mawar No. 21, Bandung'),
-('Pinjem Mobil Cabang Timur', 'Jl. Tulip No. 8, Bandung');
+('Pinjem Mobil Cabang Timur', 'Jl. Tulip No. 8, Bandung'),
+('Pinjem Mobil Cabang Selatan','Jl. Matahari No. 15, Bandung'),
+('Pinjem Mobil Cabang Utara', 'Jl. Lavender No. 15, Bandung');
 
 INSERT INTO pegawai (id_cabang, nama_pegawai, nomor_telepon, email, alamat, jabatan) VALUES
 (1, 'Admin Utama', '081234567801', 'adminutama@gmail.com', 'Jl. Bukit Jarian No. 12', 'Pemilik'),
 (1, 'Admin Cabang Utama', '081234567802', 'admincabang@gmail.com', 'Jl. Ciumbuleuit No. 45', 'Admin Cabang'),
 (2, 'Pegawai Barat', '081234567803', 'pegawaibarat@gmail.com', 'Jl. Cibaduyut No. 17', 'Petugas Cek Kondisi'),
-(3, 'Pegawai Timur', '081234567804', 'pegawaitimur@gmail.com', 'Jl. Antapani No. 3', 'Petugas Cek Kondisi');
+(3, 'Pegawai Timur', '081234567804', 'pegawaitimur@gmail.com', 'Jl. Antapani No. 3', 'Petugas Cek Kondisi'),
+(4, 'Pegawai Selatan', '081234567807', 'pegawaiSelatan@gmail.com', 'Jl. Jatihurip No. 20', 'Petugas Cek Kondisi'),
+(5, 'Pegawai Utara', '081234567805', 'pegawaiUtara@gmail.com', 'Jl. Cihapit No. 10', 'Petugas Cek Kondisi');
 
 INSERT INTO member (nama_member, ktp, sim, alamat, nomor_telepon, email, tanggal_registrasi, id_cabang) VALUES
 ('Dodo', 'uploads/identitas/ktp_dodo.png', 'uploads/identitas/sim_dodo.png', 'Jl. Sukajadi No. 15, Bandung', '082129284461', 'dodo@gmail.com', '2026-05-20', 2),
@@ -87,16 +98,16 @@ VALUES
 (6, 8, '2026-05-26', '2026-05-28', 2, 1800000, 'Menunggu Cek Akhir', 900000);
 
 INSERT INTO kondisi_mobil
-(id_peminjaman, id_pegawai, jenis_kondisi, foto_kondisi, keterangan_kondisi, tanggal_upload)
+(id_peminjaman, id_pegawai, jenis_kondisi, foto_depan,foto_belakang,foto_kiri,foto_kanan,foto_interior, keterangan_kondisi, tanggal_upload)
 VALUES
-(1, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png', 'Mobil bersih, ban normal, tidak ada kerusakan baru.', '2026-05-20'),
-(1, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png', 'Mobil kembali dalam kondisi baik.', '2026-05-21'),
-(2, 3, 'Awal', 'uploads/mobil/suzuki_jimny.png', 'Kondisi awal baik dan siap digunakan.', '2026-05-24'),
-(2, 3, 'Akhir', 'uploads/mobil/suzuki_jimny.png', 'Ada baret kecil pada pintu kiri dan customer terlambat mengembalikan mobil.', '2026-05-27'),
-(3, 4, 'Awal', 'uploads/mobil/toyota_fortuner.png', 'Kondisi awal baik, interior bersih, bahan bakar cukup.', '2026-05-27'),
-(5, 3, 'Awal', 'uploads/mobil/hyundai_creta.png', 'Kondisi awal baik dan dokumen kendaraan lengkap.', '2026-05-24'),
-(5, 3, 'Akhir', 'uploads/mobil/hyundai_creta.png', 'Terdapat penyok kecil pada bumper belakang.', '2026-05-27'),
-(6, 4, 'Awal', 'uploads/mobil/hyundai_palisade.png', 'Kondisi awal sangat baik, interior bersih.', '2026-05-26');
+(1, 3, 'Awal', 'uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg', 'Mobil bersih, ban normal, tidak ada kerusakan baru.', '2026-05-20'),
+(1, 3, 'Akhir', 'uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg', 'Mobil kembali dalam kondisi baik.', '2026-05-21'),
+(2, 3, 'Awal', 'uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg', 'Kondisi awal baik dan siap digunakan.', '2026-05-24'),
+(2, 3, 'Akhir', 'uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg','uploads/kondisi/kondisi_suzuki_jimny.jpg', 'Ada baret kecil pada pintu kiri dan customer terlambat mengembalikan mobil.', '2026-05-27'),
+(3, 4, 'Awal', 'uploads/kondisi/kondisi_toyota_fortuner.jpg','uploads/kondisi/kondisi_toyota_fortuner.jpg','uploads/kondisi/kondisi_toyota_fortuner.jpg','uploads/kondisi/kondisi_toyota_fortuner.jpg','uploads/kondisi/kondisi_toyota_fortuner.jpg', 'Kondisi awal baik, interior bersih, bahan bakar cukup.', '2026-05-27'),
+(5, 3, 'Awal', 'uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg', 'Kondisi awal baik dan dokumen kendaraan lengkap.', '2026-05-24'),
+(5, 3, 'Akhir', 'uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg','uploads/kondisi/kondisi_hyundai_creta.jpg', 'Terdapat penyok kecil pada bumper belakang.', '2026-05-27'),
+(6, 4, 'Awal', 'uploads/kondisi/kondisi_hyundai_palisade.jpg','uploads/kondisi/kondisi_hyundai_palisade.jpg','uploads/kondisi/kondisi_hyundai_palisade.jpg','uploads/kondisi/kondisi_hyundai_palisade.jpg','uploads/kondisi/kondisi_hyundai_palisade.jpg', 'Kondisi awal sangat baik, interior bersih.', '2026-05-26');
 
 INSERT INTO pengembalian
 (id_peminjaman, id_pegawai, tanggal_kembali, keterlambatan, total_denda, total_bayar_sewa, sisa_bayar, status_pembayaran, tanggal_pelunasan)
@@ -107,7 +118,7 @@ VALUES
 
 INSERT INTO detail_denda (id_pengembalian, nama_denda, nominal_denda) VALUES
 (2, 'Light Damage', 50000),
-(3, 'Medium Damage', 150000);
+(3, 'Medium Damage', 150000); 
 
 -- buat nomor_polisi menjadi unique, dan id_mobil tetap primary key, agar jika ada
 -- nomor_polisi yang akan ditambah tidak ada yang duplikat
