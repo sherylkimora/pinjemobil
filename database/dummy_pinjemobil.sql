@@ -109,6 +109,11 @@ INSERT INTO detail_denda (id_pengembalian, nama_denda, nominal_denda) VALUES
 (2, 'Light Damage', 50000),
 (3, 'Medium Damage', 150000);
 
+-- buat nomor_polisi menjadi unique, dan id_mobil tetap primary key, agar jika ada
+-- nomor_polisi yang akan ditambah tidak ada yang duplikat
+ALTER TABLE mobil
+ADD CONSTRAINT UQ_mobil_nomor_polisi UNIQUE(nomor_polisi);
+
 -- buat check
 SELECT * 
 FROM cabang;
@@ -133,3 +138,6 @@ FROM pengembalian;
 
 SELECT * 
 FROM detail_denda;
+
+delete from mobil
+where id_mobil = 10
