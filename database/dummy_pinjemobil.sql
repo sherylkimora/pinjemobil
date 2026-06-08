@@ -261,7 +261,7 @@ Kolom id_cabang menunjukkan cabang tempat member terdaftar.
 --Data Master 
 INSERT INTO member (nama_member, ktp, sim, alamat, nomor_telepon, email, tanggal_registrasi, id_cabang) VALUES
 ('Dodo', 'uploads/identitas/ktp_dodo.png', 'uploads/identitas/sim_dodo.png', 'Jl. Sukajadi No. 15, Bandung', '082129284461', 'dodo@gmail.com', '2026-05-20', 2),
-('Kapi', 'uploads/identitas/ktp_kapi.png', 'uploads/identitas/sim_kapi.png', 'Jl. Dago No. 22, Bandung', '082145678902', 'kapi@gmail.com', '2026-05-21', 1),
+('Kapi', 'uploads/identitas/ktp_kapi.png', 'uploads/identitas/sim_kapi.png', 'Jl. Dago No. 22, Bandung', '082145678902', 'kapi@gmail.com', '2026-05-21', 2),
 ('Alicia', 'uploads/identitas/ktp_alicia.png', 'uploads/identitas/sim_alicia.png', 'Jl. Riau No. 8, Bandung', '082156789013', 'alicia@gmail.com', '2026-05-22', 2),
 ('Felice', 'uploads/identitas/ktp_felice.png', 'uploads/identitas/sim_felice.png', 'Jl. Braga No. 11, Bandung', '082167890124', 'felice@gmail.com', '2026-05-23', 1),
 ('Sheryl', 'uploads/identitas/ktp_sheryl.png', 'uploads/identitas/sim_sheryl.png', 'Jl. Pasteur No. 5, Bandung', '082178901235', 'sheryl@gmail.com', '2026-05-24', 3),
